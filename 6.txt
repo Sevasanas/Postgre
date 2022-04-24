@@ -1,0 +1,27 @@
+10 самых дорогих товаров и кто их купил
+SELECT
+buyers.id,
+buyers.name,
+buyers.surname,
+products.name AS name_product,
+products.price AS price
+FROM buyers
+JOIN orders
+ON buyers.id = orders.id_buyer
+LEFT JOIN products
+ON products.id = orders.id_product
+ORDER BY price DESC 
+LIMIT 10;
+
+Отправленные заказы и имя покупателя
+SELECT
+buyers.id,
+buyers.name,
+buyers.surname,
+status_order.status_order
+FROM buyers
+JOIN orders
+ON buyers.id = orders.id_buyer
+LEFT JOIN status_order
+ON status_order.id = orders.status_order
+WHERE status_order.id = 4;
