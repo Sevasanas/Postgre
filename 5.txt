@@ -1,0 +1,16 @@
+¬ывела отзыв покупател€ с id 25 и способ оплаты товара
+SELECT
+(SELECT reviewe FROM reviews WHERE id_buyer = orders.id_buyer) AS reviewe,
+(SELECT name FROM payment WHERE id = orders.id_payment) AS payment,
+(SELECT CONCAT(name ,' ', surname) FROM buyers WHERE id = orders.id_buyer) AS buyer
+FROM orders
+WHERE id_buyer = 25;
+
+10 самых дорогих товаров и кто их купил
+SELECT
+(SELECT name FROM products WHERE id = orders.id_product) AS name_product,
+(SELECT price FROM products WHERE id = orders.id_product) AS price,
+(SELECT CONCAT(name ,' ', surname) FROM buyers WHERE id = orders.id_buyer) AS buyer
+FROM orders
+ORDER BY price DESC 
+LIMIT 10;
