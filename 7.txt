@@ -1,0 +1,24 @@
+CREATE VIEW order_added_last_month AS
+SELECT
+buyers.id,
+buyers.name,
+buyers.surname,
+orders.date,
+status_order.status_order
+FROM buyers
+JOIN orders
+ON buyers.id = orders.id_buyer
+LEFT JOIN status_order
+ON status_order.id = orders.status_order
+WHERE date > (current_timestamp - interval '1 month');
+
+CREATE VIEW product_price AS
+SELECT
+products.id,
+products.name,
+products.price,
+manufacturer.name AS manufacturer
+FROM products
+JOIN manufacturer
+ON manufacturer.id = products.id_manufacturer
+ORDER BY price DESC;
