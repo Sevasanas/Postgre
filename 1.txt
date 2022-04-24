@@ -1,0 +1,69 @@
+CREATE TABLE products (
+id SERIAL PRIMARY KEY,
+	   name VARCHAR (250) NOT NULL,
+	   price INT,
+	   in_stock BOOLEAN,
+	   description TEXT,
+	   id_manufacturer INT,
+	   url VARCHAR (250) NOT NULL UNIQUE,
+	   extra_options JSONB
+);
+
+CREATE TABLE manufacturer (
+id SERIAL PRIMARY KEY,
+	name VARCHAR (250) NOT NULL
+);
+
+CREATE TABLE buyers (
+id SERIAL PRIMARY KEY,
+	name VARCHAR(250) NOT NULL,
+	surname VARCHAR(250) NOT NULL,
+	email VARCHAR(150) NOT NULL UNIQUE,
+	phone VARCHAR(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE cart (
+id_product INT NOT NULL,
+	id_buyer INT NOT NULL,
+	price INT,
+	count INT
+);
+
+CREATE TABLE orders (
+id SERIAL PRIMARY KEY,
+	date TIMESTAMP,
+	id_buyer INT NOT NULL,
+	id_product INT NOT NULL,
+	id_payment INT NOT NULL,
+	status_order INT NOT NULL,
+	id_delivery INT NOT NULL
+);
+
+CREATE TABLE status_order (
+id SERIAL PRIMARY KEY,
+	status_order VARCHAR(50)
+);
+
+CREATE TABLE delivery (
+id SERIAL PRIMARY KEY,
+	id_buyer INT NOT NULL,
+	address VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE reviews (
+id SERIAL PRIMARY KEY,
+	id_buyer INT NOT NULL,
+	reviewe TEXT
+);
+
+CREATE TABLE payment (
+id SERIAL PRIMARY KEY,
+	name VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE recipes (
+id SERIAL PRIMARY KEY,
+	name VARCHAR(250) NOT NULL,
+	id_product INT,
+	description TEXT
+);
