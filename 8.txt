@@ -1,0 +1,7 @@
+CREATE FUNCTION total_sum ()
+RETURNS INTEGER AS
+$$
+SELECT price*count AS total_sum
+FROM cart;
+$$
+LANGUAGE SQL;
