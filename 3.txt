@@ -1,0 +1,50 @@
+ALTER TABLE products
+ADD CONSTRAINT products_id_manufacturer_fk
+FOREIGN KEY (id_manufacturer)
+REFERENCES manufacturer(id)
+ON DELETE RESTRICT;
+
+ALTER TABLE cart
+ADD CONSTRAINT cart_id_product_fk
+FOREIGN KEY (id_product)
+REFERENCES products(id);
+
+ALTER TABLE cart
+ADD CONSTRAINT cart_id_buyer_fk
+FOREIGN KEY (id_buyer)
+REFERENCES buyers(id);
+
+ALTER TABLE reviews
+ADD CONSTRAINT reviews_id_buyer_fk
+FOREIGN KEY (id_buyer)
+REFERENCES buyers(id);
+
+ALTER TABLE recipes
+ADD CONSTRAINT recipes_id_product_fk
+FOREIGN KEY (id_product)
+REFERENCES products(id);
+
+ALTER TABLE orders
+ADD CONSTRAINT orders_id_buyer_fk
+FOREIGN KEY (id_buyer)
+REFERENCES buyers(id);
+
+ALTER TABLE orders
+ADD CONSTRAINT orders_id_product_fk
+FOREIGN KEY (id_product)
+REFERENCES products(id);
+
+ALTER TABLE orders
+ADD CONSTRAINT orders_id_payment_fk
+FOREIGN KEY (id_payment)
+REFERENCES payment(id);
+
+ALTER TABLE orders
+ADD CONSTRAINT orders_status_order_fk
+FOREIGN KEY (status_order)
+REFERENCES status_order(id);
+
+ALTER TABLE orders
+ADD CONSTRAINT orders_id_delivery_fk
+FOREIGN KEY (id_delivery)
+REFERENCES delivery(id);
